@@ -14,6 +14,7 @@ Add ProjectUtilitiesBundle to your *src/* dir
 ::
 
     $ git submodule add git://github.com/digitalkaoz/ProjectUtilitiesBundle.git src/rs/ProjectUtilitiesBundle
+    $ git submodule init
 
 
 Add the *rs* namespace to your autoloader
@@ -72,11 +73,11 @@ run the command
 ::
 
     # with the default config
-    app/console project:bootstrap
+    $ app/console project:bootstrap
 
     # with a custom config
-    app/console project:bootstrap --config=~/foo.yml
+    $ app/console project:bootstrap --config=~/foo.yml
 
     # stop if a command fails
-    app/console project:bootstrap --stop
+    $ app/console project:bootstrap --stop
 
