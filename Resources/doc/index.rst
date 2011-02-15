@@ -19,7 +19,8 @@ Add ProjectUtilitiesBundle to your *src/* dir
 Add the *rs* namespace to your autoloader
 -------------
 
-::
+:: code-block:: php
+
     // app/autoload.php
 
     $loader->registerNamespaces(array(
@@ -32,7 +33,8 @@ Add ProjectUtilitiesBundle to your application kernel
 -------------
 
 
-::
+:: code-block:: php
+
     // app/AppKernel.php
 
     public function registerBundles()
@@ -48,11 +50,11 @@ Add ProjectUtilitiesBundle to your application kernel
 Application Bootstraper
 =====================
 
-
 configure your commands in [app/config/project_bootstrap.yml]:
 -------------
 
-::
+:: code-block:: yaml
+
     # app/config/project_bootstrap.yml
 
     commands:
@@ -68,15 +70,13 @@ run the command
 ------------
 
 ::
-    # with the default config
 
+    # with the default config
     app/console project:bootstrap
 
     # with a custom config
-
     app/console project:bootstrap --config=~/foo.yml
 
     # stop if a command fails
-
     app/console project:bootstrap --stop
 
