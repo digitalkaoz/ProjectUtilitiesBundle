@@ -19,7 +19,7 @@ Add ProjectUtilitiesBundle to your *src/* dir
 Add the *rs* namespace to your autoloader
 -------------
 
-:: code-block:: php
+::
 
     // app/autoload.php
 
@@ -33,7 +33,7 @@ Add ProjectUtilitiesBundle to your application kernel
 -------------
 
 
-:: code-block:: php
+::
 
     // app/AppKernel.php
 
@@ -53,7 +53,7 @@ Application Bootstraper
 configure your commands in [app/config/project_bootstrap.yml]:
 -------------
 
-:: code-block:: yaml
+::
 
     # app/config/project_bootstrap.yml
 
