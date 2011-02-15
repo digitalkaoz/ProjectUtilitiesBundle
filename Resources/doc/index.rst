@@ -43,7 +43,7 @@ Add ProjectUtilitiesBundle to your application kernel
 
 
 Application Bootstraper
----------------------
+=====================
 
 
 configure your commands in [app/config/project_bootstrap.yml]:
@@ -66,11 +66,14 @@ run the command
 
 ::
     # with the default config
+
     app/console project:bootstrap
 
     # with a custom config
+
     app/console project:bootstrap --config=~/foo.yml
 
     # stop if a command fails
+
     app/console project:bootstrap --stop
 
