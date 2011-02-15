@@ -47,7 +47,7 @@ Application Bootstraper
 
 
 configure your commands in [app/config/project_bootstrap.yml]:
-~~~~~~~~~~~~~~~~~~~
+-------------
 
 ::
 
@@ -62,7 +62,7 @@ configure your commands in [app/config/project_bootstrap.yml]:
      - 'ls'
 
 run the command
-~~~~~~~~~~~~~~
+------------
 
 ::
     # with the default config
