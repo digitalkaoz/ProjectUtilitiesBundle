@@ -51,7 +51,7 @@ configure your commands in [app/config/project_bootstrap.yml]:
 
 ::
 
-    # app/config/project_bootstrap.yml
+   # app/config/project_bootstrap.yml
 
    commands:
      - 'doctrine:generate:entities FooBundle'
@@ -60,6 +60,7 @@ configure your commands in [app/config/project_bootstrap.yml]:
   
    shells:
      - 'ls'
+
 
 run the command
 ------------
