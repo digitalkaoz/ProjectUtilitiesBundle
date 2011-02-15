@@ -68,6 +68,12 @@ EOT
 		$this->doCommands($config['commands']);
     }
 	
+	/**
+	 * loads the config file
+	 * 
+	 * @param string $file
+	 * @return array 
+	 */
 	protected function loadConfigFile($file)
 	{
 		//default
@@ -85,6 +91,11 @@ EOT
 		return \Symfony\Component\Yaml\Yaml::load($file);
 	}
 	
+	/**
+	 * run commands
+	 * 
+	 * @param array $commands 
+	 */
 	protected function doCommands($commands)
 	{
 		//supress warnings if stop on error
@@ -93,9 +104,14 @@ EOT
 		}else{
 			\array_map(array($this,'processCommand'), $commands);
 		}
-		
 	}
 	
+	/**
+	 * runs a command
+	 * 
+	 * @param string $command
+	 * @return int 
+	 */
 	protected function processCommand($command)
 	{
 		$this->output->writeln(sprintf('<question>execute</question> <comment>%s</comment>', $command));
@@ -106,6 +122,5 @@ EOT
 		//run the command
 		return $this->application->run($input);
 	}
-	
 	
 }
