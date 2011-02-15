@@ -8,16 +8,14 @@ Features
 Installation
 ============
 
-Add ProjectUtilitiesBundle to your src/ dir
--------------------------------------
+**Add ProjectUtilitiesBundle to your *src/* dir**
 
 ::
 
     $ git submodule add git://github.com/digitalkaoz/ProjectUtilitiesBundle.git src/rs/ProjectUtilitiesBundle
 
 
-Add the rs namespace to your autoloader
-----------------------------------------
+**Add the *rs* namespace to your autoloader**
 
 ::
     // app/autoload.php
@@ -28,8 +26,7 @@ Add the rs namespace to your autoloader
     );
 
 
-Add ProjectUtilitiesBundle to your application kernel
------------------------------------------
+**Add ProjectUtilitiesBundle to your application kernel**
 
 ::
     // app/AppKernel.php
