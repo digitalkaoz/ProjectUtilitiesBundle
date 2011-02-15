@@ -1,0 +1,6 @@
+commands:
+  - 'router:debug'
+  
+shells:
+  - 'ls'
+  
