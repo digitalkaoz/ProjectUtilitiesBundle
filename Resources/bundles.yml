@@ -1,0 +1,15 @@
+all:
+  - Symfony\Bundle\FrameworkBundle\FrameworkBundle
+  - Symfony\Bundle\TwigBundle\TwigBundle
+  - Symfony\Bundle\ZendBundle\ZendBundle
+  - Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle
+  - Symfony\Bundle\DoctrineBundle\DoctrineBundle
+
+  - rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle
+  
+dev:
+#  - Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle
+  
+test:
+#  - Symfony\Bundle\DoctrineMongoDBBundle\DoctrineMongoDBBundle
+  

@@ -48,10 +48,12 @@ Add ProjectUtilitiesBundle to your application kernel
     }
 
 
-Application Bootstraper
+Bootstraper
 =====================
 
-configure your commands in [app/config/project_bootstrap.yml]:
+*the bootstrapper builds an app with console and commands*
+
+configure your commands:
 -------------
 
 ::
@@ -80,4 +82,46 @@ run the command
 
     # stop if a command fails
     $ app/console project:bootstrap --stop
+
+
+BundleLoader
+=====================
+
+*the BundleLoader manages your bundle config in an yaml file*
+
+use the BundleLoader in your Application Kernel
+---------------
+
+::
+
+    // app/AppKernel.php
+    use rs\ProjectUtilitiesBundle\Project\BundleLoader;
+    
+    class AppKernel extends Kernel
+    {
+
+    public function registerBundles()
+    {
+		$file = $this->getRootDir().'/config/bundles.yml';
+		return BundleLoader::loadFromConfig($file);
+    }
+
+
+environment configurations
+---------------
+
+::
+
+    # app/config/bundles.yml
+    all:
+      - Symfony\Bundle\FrameworkBundle\FrameworkBundle
+      - Symfony\Bundle\TwigBundle\TwigBundle
+      - Symfony\Bundle\ZendBundle\ZendBundle
+      - Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle
+      - rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle
+    
+    dev:
+      - Symfony\Bundle\DoctrineBundle\DoctrineBundle
+      
+    test:
 
