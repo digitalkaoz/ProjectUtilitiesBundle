@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Tests\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
-use Symfony\Bundle\DoctrineBundle\DependencyInjection\DoctrineExtension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use rs\ProjectUtilitiesBundle\DependencyInjection\BootstrapExtension;

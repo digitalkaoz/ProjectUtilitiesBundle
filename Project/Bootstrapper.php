@@ -22,6 +22,11 @@ class Bootstrapper
 		return $this;
 	}
 	
+	/**
+	 * bootstraps the application with commands
+	 * 
+	 * @param string $config_file 
+	 */
 	public function bootstrap($config_file)
 	{
 		$config = $this->loadConfigFile($config_file);
