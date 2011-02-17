@@ -47,6 +47,9 @@ Add ProjectUtilitiesBundle to your application kernel
             // ...
         );
     }
+    
+   //or use the BundleLoader (see below)
+  
 
 
 Bootstraper
@@ -100,7 +103,7 @@ use the BundleLoader in your Application Kernel
     
     class AppKernel extends Kernel
     {
-
+     
         public function registerBundles()
         {
 		    $file = $this->getRootDir().'/config/bundles.yml';
