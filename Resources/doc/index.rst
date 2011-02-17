@@ -1,4 +1,4 @@
-*Provides some more RAD symfony2 utilities*
+**Provides some more RAD symfony2 utilities**
 
 
 Features
