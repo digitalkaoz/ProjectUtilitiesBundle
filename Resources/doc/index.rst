@@ -3,7 +3,8 @@ Provides some more RAD symfony2 commands
 Features
 ========
 
-- run commands defined in a yaml file
+- **Bootstrapper** *run commands defined in a yaml file to bootstrap an application*
+- **BundleLoader** *configure your Bundles in a yaml file*
 
 Installation
 ============
