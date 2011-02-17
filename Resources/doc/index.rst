@@ -107,7 +107,7 @@ use the BundleLoader in your Application Kernel
         public function registerBundles()
         {
             $file = $this->getRootDir().'/config/bundles.yml';
-            return BundleLoader::loadFromConfig($file);
+            return BundleLoader::loadFromConfig($file,$this->getEnvironment());
         }
     }
 
