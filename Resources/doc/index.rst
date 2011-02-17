@@ -101,10 +101,11 @@ use the BundleLoader in your Application Kernel
     class AppKernel extends Kernel
     {
 
-    public function registerBundles()
-    {
-		$file = $this->getRootDir().'/config/bundles.yml';
-		return BundleLoader::loadFromConfig($file);
+        public function registerBundles()
+        {
+		    $file = $this->getRootDir().'/config/bundles.yml';
+		    return BundleLoader::loadFromConfig($file);
+        }
     }
 
 
