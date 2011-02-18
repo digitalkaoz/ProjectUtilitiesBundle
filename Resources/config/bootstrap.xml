@@ -11,7 +11,7 @@
   </parameters>
   
   <services>
-    <service id="projectutilities.bootstrap" class="%bootstrap.class%"></service>
+    <service id="project_utilities" class="%bootstrap.class%"></service>
 <!--
 	<service id="bootstrap.run" class="%bootstrap.class%" public="false">
       <call method="bootstrap"><argument>%bootstrap.file%</argument></call>

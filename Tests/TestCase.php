@@ -35,7 +35,7 @@ class TestCase extends \Symfony\Bundle\FrameworkBundle\Tests\TestCase
     {
         $kernel = $this->getMock('Symfony\Component\HttpKernel\KernelInterface');
         $container = new ContainerBuilder(new ParameterBag(array(
-            'kernel.bundles'     => array('YamlBundle' => 'Fixtures\Bundles\YamlBundle\YamlBundle','ProjectUtilitiesBundle' => 'rs\ProjectUtilitiesBundle'),
+            'kernel.bundles'     => array('YamlBundle' => 'Fixtures\Bundles\YamlBundle\YamlBundle'),
             'kernel.cache_dir'   => sys_get_temp_dir(),
             'kernel.root_dir'    => $_SERVER['KERNEL_DIR'] // src dir
         )));

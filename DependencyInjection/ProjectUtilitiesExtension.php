@@ -14,24 +14,27 @@ namespace rs\ProjectUtilitiesBundle\DependencyInjection;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\Config\FileLocator;
+use rs\ProjectUtilities\Project\Bootstrapper;
 
 /**
  */
 class ProjectUtilitiesExtension extends Extension
 {
-    public function configLoad(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container)
+
     {		
-		$this->bootstrapLoad($config,$container);
+		$this->bootstrapLoad($configs,$container);
     }
 	
     public function bootstrapLoad(array $configs, ContainerBuilder $container)
     {		
-        $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('bootstrap.xml');
 		
-        $this->addClassesToCompile(array(
-            'Bootstrapper'
-        ));
+//        $this->addClassesToCompile(array(
+//            'rs\ProjectUtilities\Project\Bootstrapper'
+//        ));
 		
         foreach ($configs as $config) {
             $this->doConfigLoad($config, $container);
@@ -45,13 +48,8 @@ class ProjectUtilitiesExtension extends Extension
      */
     protected function doConfigLoad(array $config, ContainerBuilder $container)
     {		
-		if(!$container->hasDefinition('bootstrap.file'))
-		{
-            $container->setParameter('bootstrap.file', $config['file']);
-        }	
-		
-		$container->setAlias('bootstrap','bootstrap');
-	}
+        $container->setAlias('bootstrap','project_utilities');
+    }
 	
     /**
      * Returns the base path for the XSD files.
@@ -70,6 +68,6 @@ class ProjectUtilitiesExtension extends Extension
 
     public function getAlias()
     {
-        return 'projectutilities';
+        return 'project_utilities';
     }
 }
