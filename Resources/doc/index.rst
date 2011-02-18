@@ -53,7 +53,7 @@ Add ProjectUtilitiesBundle to your application kernel
   
 
 
-Bootstraper
+Bootstrapper Command
 =====================
 
 *the bootstrapper builds an app with console and commands*
@@ -89,7 +89,7 @@ run the command
     $ app/console project:bootstrap --stop
 
 
-BundleLoader
+Bundle Loader
 =====================
 
 *the BundleLoader manages your bundle config in an yaml file*
