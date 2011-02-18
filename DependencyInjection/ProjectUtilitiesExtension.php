@@ -14,13 +14,16 @@ namespace rs\ProjectUtilitiesBundle\DependencyInjection;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 
 /**
  */
-class BootstrapExtension extends Extension
+class ProjectUtilitiesExtension extends Extension
 {
     public function configLoad(array $configs, ContainerBuilder $container)
+    {		
+    }
+	
+    public function bootstrapLoad(array $configs, ContainerBuilder $container)
     {		
         $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
         $loader->load('bootstrap.xml');
@@ -33,7 +36,7 @@ class BootstrapExtension extends Extension
             $this->doConfigLoad($config, $container);
         }
     }
-
+	
     /**
      *
      * @param array            $config    An array of configuration settings
@@ -46,7 +49,7 @@ class BootstrapExtension extends Extension
             $container->setParameter('bootstrap.file', $config['file']);
         }	
 		
-		$container->setAlias($this->getAlias(),'bootstrap');
+		$container->setAlias('bootstrap','bootstrap');
 	}
 	
     /**
@@ -66,6 +69,6 @@ class BootstrapExtension extends Extension
 
     public function getAlias()
     {
-        return 'bootstrap';
+        return 'projectutilities';
     }
 }

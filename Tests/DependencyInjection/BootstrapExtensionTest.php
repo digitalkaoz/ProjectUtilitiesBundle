@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\NullOutput;
 use rs\ProjectUtilitiesBundle\Tests\TestCase as BaseTestCase;
 
 
-class BootstrapExtensionTest extends BaseTestCase
+class ProjectUtilitiesExtensionTest extends BaseTestCase
 {
 	
 	
