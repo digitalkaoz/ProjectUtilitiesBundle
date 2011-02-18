@@ -69,6 +69,9 @@ EOT
 		$this->application->setAutoExit(false);
 		
 		//TODO replace the bootstrapper with the service from DI
+		//$bootstrapper = $this->application->getKernel()->getContainer()->get('projectutilities.bootstrap');
+		//var_dump($bootstrapper);
+		
 		$bootstrapper = new Bootstrapper();
 
 		$bootstrapper->

@@ -21,6 +21,7 @@ class ProjectUtilitiesExtension extends Extension
 {
     public function configLoad(array $configs, ContainerBuilder $container)
     {		
+		$this->bootstrapLoad($config,$container);
     }
 	
     public function bootstrapLoad(array $configs, ContainerBuilder $container)
