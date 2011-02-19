@@ -2,7 +2,6 @@
 
 namespace rs\ProjectUtilitiesBundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Tests\Kernel;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
@@ -35,7 +34,7 @@ class TestCase extends \Symfony\Bundle\FrameworkBundle\Tests\TestCase
     {
         $kernel = $this->getMock('Symfony\Component\HttpKernel\KernelInterface');
         $container = new ContainerBuilder(new ParameterBag(array(
-            'kernel.bundles'     => array('YamlBundle' => 'Fixtures\Bundles\YamlBundle\YamlBundle'),
+            'kernel.bundles'     => array('ProjectUtilitiesBundle' => 'rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle'),
             'kernel.cache_dir'   => sys_get_temp_dir(),
             'kernel.root_dir'    => $_SERVER['KERNEL_DIR'] // src dir
         )));
