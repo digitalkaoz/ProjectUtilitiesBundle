@@ -6,42 +6,10 @@
 
   <parameters>
     <parameter key="bootstrap.class">rs\ProjectUtilitiesBundle\Project\Bootstrapper</parameter>
-	<parameter key="bootstrap.env">%kernel.environment%</parameter> 
-    <parameter key="bootstrap.file">bootstrap_%kernel.environment%.yml</parameter>
+    <parameter key="bootstrap.file">%kernel.root_dir%/config/bootstrap.yml</parameter>
   </parameters>
   
   <services>
-    <service id="project_utilities" class="%bootstrap.class%"></service>
-<!--
-	<service id="bootstrap.run" class="%bootstrap.class%" public="false">
-      <call method="bootstrap"><argument>%bootstrap.file%</argument></call>
-    </service>-->
+    <service id="bootstrap" class="%bootstrap.class%"></service>
   </services>  
-<!--
-  <services>
-    <service id="swiftmailer.mailer" class="%swiftmailer.class%" public="false">
-      <argument type="service" id="swiftmailer.transport" />
-      <file>%swiftmailer.init_file%</file>
-    </service>
-
-    <service id="swiftmailer.transport.smtp" class="%swiftmailer.transport.smtp.class%" public="false">
-      <argument type="service" id="swiftmailer.transport.buffer" />
-      <argument type="collection">
-        <argument type="service" id="swiftmailer.transport.authhandler" />
-      </argument>
-      <argument type="service" id="swiftmailer.transport.eventdispatcher" />
-
-      <call method="setHost"><argument>%swiftmailer.transport.smtp.host%</argument></call>
-      <call method="setPort"><argument>%swiftmailer.transport.smtp.port%</argument></call>
-      <call method="setEncryption"><argument>%swiftmailer.transport.smtp.encryption%</argument></call>
-      <call method="setUsername"><argument>%swiftmailer.transport.smtp.username%</argument></call>
-      <call method="setPassword"><argument>%swiftmailer.transport.smtp.password%</argument></call>
-      <call method="setAuthMode"><argument>%swiftmailer.transport.smtp.auth_mode%</argument></call>
-    </service>
-
-    <service id="swiftmailer.transport.sendmail" class="%swiftmailer.transport.sendmail.class%" public="false">
-      <argument type="service" id="swiftmailer.transport.buffer" />
-      <argument type="service" id="swiftmailer.transport.eventdispatcher" />
-    </service>
--->
 </container>

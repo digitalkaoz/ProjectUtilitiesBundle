@@ -68,7 +68,7 @@ EOT
 		$this->application->setCatchExceptions(!$this->stopOnError);
 		$this->application->setAutoExit(false);
 		
-		$bootstrapper = $this->application->getKernel()->getContainer()->get('projectutilities');
+		$bootstrapper = $this->application->getKernel()->getContainer()->get('bootstrap');
 		
 		//$bootstrapper = new Bootstrapper();
 
