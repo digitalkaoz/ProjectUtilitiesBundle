@@ -3,15 +3,24 @@
 namespace rs\ProjectUtilitiesBundle\Project;
 
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\HttpKernel\Kernel;
 
+/**
+ * a simple yaml to bundle wrapper
+ * 
+ * @author Robert Schönthal <seroscho@googlemail.com>
+ * @package rs.ProjectUtitlitiesBundle
+ * @subpackage Project
+ */
 class BundleLoader
 {
+    
 	/**
 	 * loads bundles defined in a file
 	 * 
 	 * @param string $file
 	 * @param string $env
-	 * @return bundle 
+	 * @return array[Bundle] 
 	 */
 	public static function loadFromFile($file, $env='all')
 	{
@@ -32,6 +41,13 @@ class BundleLoader
 		return $bundles;
 	}
 	
+    /**
+     * flattens config
+     * 
+     * @param array $config
+     * @param string $env
+     * @return array 
+     */
 	protected static function mergeConfig($config,$env)
 	{
 		$configAll = isset($config['all']) ? $config['all'] : array();

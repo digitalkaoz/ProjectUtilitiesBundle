@@ -7,6 +7,13 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 
+/**
+ * executes various symfony2 commands defined in a yaml file
+ * 
+ * @author Robert Schönthal <seroscho@googlemail.com>
+ * @package rs.ProjectUtitlitiesBundle
+ * @subpackage Project
+ */
 class Bootstrapper
 {
 

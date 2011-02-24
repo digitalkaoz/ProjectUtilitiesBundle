@@ -1,26 +1,16 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien.potencier@symfony-project.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace rs\ProjectUtilitiesBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
- * This class contains the configuration information for the bundle
- *
- * This information is solely responsible for how the different configuration
- * sections are normalized, and merged.
- *
- * @author Christophe Coevoet <stof@notk.org>
+ * a simple yaml to bundle wrapper
+ * 
+ * @author Robert Schönthal <seroscho@googlemail.com>
+ * @package rs.ProjectUtitlitiesBundle
+ * @subpackage DepedencyInjection
  */
 class Configuration
 {

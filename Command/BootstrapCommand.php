@@ -16,9 +16,11 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use rs\ProjectUtilitiesBundle\Project\Bootstrapper;
 
 /**
- * Bootstraps a project
- *
+ * a simple command to bootstrap the application
+ * 
  * @author Robert Schönthal <seroscho@googlemail.com>
+ * @package rs.ProjectUtitlitiesBundle
+ * @subpackage Command
  */
 class BootstrapCommand extends Command
 {

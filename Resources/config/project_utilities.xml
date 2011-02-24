@@ -7,9 +7,14 @@
   <parameters>
     <parameter key="bootstrap.class">rs\ProjectUtilitiesBundle\Project\Bootstrapper</parameter>
     <parameter key="bootstrap.file">%kernel.root_dir%/config/bootstrap.yml</parameter>
+    
+    <parameter key="bundleloader.class">rs\ProjectUtilitiesBundle\Project\BundleLoader</parameter>
+    <parameter key="bundleloader.file">%kernel.root_dir%/config/bundles.yml</parameter>
   </parameters>
   
   <services>
     <service id="bootstrap" class="%bootstrap.class%"></service>
-  </services>  
+    <service id="bundleloader" class="%bundleloader.class%"></service>
+  </services>
+  
 </container>
