@@ -186,6 +186,7 @@ use the following placeholder format (file format doesnt matter):
 
 ::
 
+    #app/config/config.yml.dist
     doctrine:
      dbal:
        dbname:   %%DB_NAME%%
