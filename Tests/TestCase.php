@@ -17,7 +17,9 @@ class TestCase extends \Symfony\Bundle\FrameworkBundle\Tests\TestCase
 	{
 		if(!$this->kernel)
 		{
-			$this->kernel = $this->createKernelMock('test');
+			$this->kernel = new Kernel();
+            $this->kernel->registerBundles();
+            $this->kernel->boot();
 		}
 		
 		return $this->kernel;
@@ -34,14 +36,17 @@ class TestCase extends \Symfony\Bundle\FrameworkBundle\Tests\TestCase
     {
         $kernel = $this->getMock('Symfony\Component\HttpKernel\KernelInterface');
         $container = new ContainerBuilder(new ParameterBag(array(
-            'kernel.bundles'     => array('ProjectUtilitiesBundle' => 'rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle'),
+            'kernel.bundles'     => array(
+                'ProjectUtilitiesBundle' => 'rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle'
+             ),
+            'kernel.environment' => 'test',
             'kernel.cache_dir'   => sys_get_temp_dir(),
             'kernel.root_dir'    => $_SERVER['KERNEL_DIR'] // src dir
         )));
         $loader = new ProjectUtilitiesExtension();
         $container->registerExtension($loader);
-        $kernel->expects($this->once())->method('getContainer')->will($this->returnValue($container));
-        $kernel->expects($this->once())->method('getBundles')->will($this->returnValue(array()));
+        //$kernel->expects($this->once())->method('getContainer')->will($this->returnValue($container));
+        //$kernel->expects($this->once())->method('getBundles')->will($this->returnValue(array()));
 
         return $kernel;
     }

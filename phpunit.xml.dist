@@ -3,7 +3,7 @@
 <phpunit bootstrap="./Tests/bootstrap.php" color="true">
 <!--
     <php>
-        <server name="SYMFONY" value="../../vendor/symfony/src" />
+        <server name="SYMFONY2" value="../../vendor_full/symfony/src" />
         <server name="KERNEL_DIR" value="../../../app" />
     </php>
 -->

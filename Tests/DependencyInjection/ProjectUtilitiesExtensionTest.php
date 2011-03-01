@@ -16,8 +16,8 @@ class ProjectUtilitiesExtensionTest extends BaseTestCase
 	
     public function testGetService()
     {
-		//$this->markTestIncomplete();
-		$service = $this->getKernel()->getContainer()->get('project_utilities');
+		$this->markTestIncomplete();
+		$service = $this->getKernel()->getContainer()->get('bootstrap');
 		var_dump($service);
 	}	
 		

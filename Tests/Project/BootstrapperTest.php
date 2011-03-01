@@ -29,9 +29,6 @@ class BootstrapperTest extends BaseTestCase
 	 */
 	public function testDefaultLoadConfigFile(TestBootstrapper $b)
 	{	
-		$this->markTestIncomplete();
-		$app = new Application($this->getMock('Symfony\Component\HttpKernel\KernelInterface'));
-		$b->setApplication($app);
 		$cfg = $b->loadConfigFile();
 		
 		$this->assertTrue(is_array($cfg),true,'config file loaded');
@@ -44,7 +41,7 @@ class BootstrapperTest extends BaseTestCase
 	 */
 	public function testLoadConfigFile(TestBootstrapper $b)
 	{
-		$file = dirname(__FILE__).'/../Fixtures/bootstrap.yml';
+		$file = dirname(__FILE__).'/../Fixtures/app/config/bootstrap.yml';
 		
 		$cfg = $b->loadConfigFile($file);
 		
@@ -70,7 +67,7 @@ class BootstrapperTest extends BaseTestCase
 	 */
     public function testBootstrap(TestBootstrapper $b)
     {
-		$file = dirname(__FILE__).'/../Fixtures/bootstrap.yml';
+		$file = dirname(__FILE__).'/../Fixtures/app/config/bootstrap.yml';
 		$b->setOutput(new NullOutput());
 		$mock = $this->getMock('Application',array('run'));
 		$b->setApplication($mock);		
@@ -84,8 +81,15 @@ class BootstrapperTest extends BaseTestCase
 	
 	public function provider()
 	{
+        $kernel = $this->getKernel();
+        
+        $fs = new \Symfony\Bundle\FrameworkBundle\Util\Filesystem();
+        $fs->mirror(__DIR__.'/../Fixtures/app/', $kernel->getRootDir());
+        $b = new TestBootstrapper();
+        $b->setApplication(new Application($kernel));
+                
 		return array(
-			array(new TestBootstrapper())
+			array($b)
 		);
 	}
 	

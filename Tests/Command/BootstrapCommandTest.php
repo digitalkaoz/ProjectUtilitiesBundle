@@ -14,7 +14,7 @@ class BootstrapCommandTest extends BaseWebTestCase
 {
 	public function testConfiguration()
 	{		
-		$command = new TestBootstrapCommand();
+		$command = new BootstrapCommand();        
 		$options = $command->getDefinition()->getOptions();
 		$this->assertEquals(\array_keys($options),array('config','stop'),'options correct');
 		
@@ -25,15 +25,13 @@ class BootstrapCommandTest extends BaseWebTestCase
     public function testRunTask()
     {
 		$this->markTestIncomplete();
-		$command = new TestBootstrapCommand();
-		$kernel = $this->createKernel();	
-		$app = new Application($kernel);
-		$command->setApplication($app);
+		$command = new BootstrapCommand();
+		$command->setApplication(new Application($this->getKernel()));
 		
         $tester = new CommandTester($command);
 
         $output = $tester->execute(array(
-            '--config' => dirname(__FILE__).'/../Fixtures/bootstrap.yml'
+            '--config' => dirname(__FILE__).'/../Fixtures/app/config/bootstrap.yml'
         ),array('interactive'=>false,'decorated'=>false));
 		
 		var_dump($output);
@@ -81,13 +79,3 @@ class BootstrapCommandTest extends BaseWebTestCase
 	
 }
 
-class TestBootstrapCommand extends BootstrapCommand
-{
-	public function __call($method, array $args = array()) {
-		if (!method_exists($this, $method)){
-			throw new BadMethodCallException("method '$method' does not exist");
-		}
-		return call_user_func_array(array($this,$method), $args);
-	}
-		
-}

@@ -33,6 +33,10 @@ class ProjectUtilitiesExtension extends Extension
         if (isset($config['bundeloader'])) {
             $this->loadBundleLoaderConfig($container,$config['bundleloader']);
         }
+        
+        if (isset($config['configurator'])) {
+            $this->loadConfiguratorConfig($container,$config['configurator']);
+        }
     }
     
     protected function loadBootstrapConfig($container, $config)
@@ -43,8 +47,7 @@ class ProjectUtilitiesExtension extends Extension
         if (isset($config['file'])) {
             $container->setParameter('bootstrap.file', $config['file']);
         }
-    }
-	
+    }	
     
     protected function loadBundleLoaderConfig($container, $config)
     {
@@ -53,6 +56,22 @@ class ProjectUtilitiesExtension extends Extension
         }
         if (isset($config['file'])) {
             $container->setParameter('bundleloader.file', $config['file']);
+        }
+    }
+    
+    protected function loadConfiguratorConfig($container, $config)
+    {
+        if (isset($config['class'])) {
+            $container->setParameter('configurator.class', $config['class']);
+        }
+        if (isset($config['config'])) {
+            $container->setParameter('configurator.config', $config['config']);
+        }
+        if (isset($config['setup'])) {
+            $container->setParameter('configurator.setup', $config['file']);
+        }
+        if (isset($config['dist'])) {
+            $container->setParameter('configurator.dist', $config['dist']);
         }
     }
 	
@@ -68,7 +87,7 @@ class ProjectUtilitiesExtension extends Extension
 
     public function getNamespace()
     {
-        return 'http://www.symfony-project.org/schema/dic/bootstrap';
+        return 'http://www.symfony-project.org/schema/dic/project_utilities';
     }
 
     public function getAlias()

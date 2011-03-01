@@ -2,7 +2,7 @@
 
 namespace rs\ProjectUtilitiesBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\Command;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\StringInput;
@@ -52,6 +52,7 @@ shells:
 EOT
 				)
 				->setName('project:bootstrap')
+                ->setDescription('bootstraps an application with various commands')
 		;
 	}
 

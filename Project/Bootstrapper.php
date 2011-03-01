@@ -19,6 +19,16 @@ class Bootstrapper
 
     protected $application, $output;
 
+    /**
+     * shortcut for instanciation 
+     * 
+     * @return Bootstrapper 
+     */
+    public static function create()
+    {
+        return new self();
+    }
+    
     public function setApplication($app = null)
     {
         $this->application = $app;

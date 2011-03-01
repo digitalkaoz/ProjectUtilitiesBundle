@@ -10,7 +10,50 @@ use Symfony\Component\Console\Command\Command;
 abstract class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestCase
 {
     protected $kernel;
+	
+	public function getKernel()
+	{
+		if(!$this->kernel)
+		{
+			$this->kernel = new Kernel();
+            $this->kernel->registerBundles();
+            $this->kernel->boot();
+		}
+		
+		return $this->kernel;
+	}
 
+    public function getApplication()
+    {
+        $kernel = $this->getKernel();
+
+        return new Application($kernel);
+    }
+
+    protected function createKernelMock($name)
+    {
+        $kernel = $this->getMock('Symfony\Component\HttpKernel\KernelInterface');
+        $container = new ContainerBuilder(new ParameterBag(array(
+            'kernel.bundles'     => array(
+                'ProjectUtilitiesBundle' => 'rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle'
+             ),
+            'kernel.environment' => 'test',
+            'kernel.cache_dir'   => sys_get_temp_dir(),
+            'kernel.root_dir'    => $_SERVER['KERNEL_DIR'] // src dir
+        )));
+        $loader = new ProjectUtilitiesExtension();
+        $container->registerExtension($loader);
+        //$kernel->expects($this->once())->method('getContainer')->will($this->returnValue($container));
+        //$kernel->expects($this->once())->method('getBundles')->will($this->returnValue(array()));
+
+        return $kernel;
+    }
+	
+	protected function getService($name)
+    {
+		return $this->getKernel()->getContainer()->get($name);
+    }
+    
     protected function runCommand($name, array $params = array())
     {
         \array_unshift($params, $name);
@@ -29,13 +72,4 @@ abstract class WebTestCase extends \Symfony\Bundle\FrameworkBundle\Test\WebTestC
         $application->run($input, $ouput);
     }
 	
-    protected function getService($name)
-    {
-        if (null === $this->kernel) {
-            $this->kernel = $this->createKernel();
-            $this->kernel->boot();
-        }
-
-        return $this->kernel->getContainer()->get($name);
-    }
 }

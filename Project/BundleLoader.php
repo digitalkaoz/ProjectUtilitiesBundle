@@ -5,6 +5,8 @@ namespace rs\ProjectUtilitiesBundle\Project;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\HttpKernel\Kernel;
 
+use rs\ProjectUtilitiesBundle\DependencyInjection\ProjectUtilitiesExtension;
+
 /**
  * a simple yaml to bundle wrapper
  * 
@@ -14,6 +16,17 @@ use Symfony\Component\HttpKernel\Kernel;
  */
 class BundleLoader
 {
+    /**
+     * loads the bundles with dic
+     * 
+     * @param Kernel $kernel 
+     */
+    public static function load(\Symfony\Component\HttpKernel\KernelInterface $kernel)
+    {
+        //var_dump($kernel);
+        //$loader = new ProjectUtilitiesExtension();        
+        //var_dump($loader->load($kernel->get, $container));
+    }
     
 	/**
 	 * loads bundles defined in a file

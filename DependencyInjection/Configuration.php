@@ -26,6 +26,8 @@ class Configuration
 
         $rootNode
                 ->variableNode('bootstrap')->end()
+                ->variableNode('bundleloader')->end()
+                ->variableNode('configurator')->end()
                 ;
                 
         return $treeBuilder->buildTree();
