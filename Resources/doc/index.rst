@@ -185,15 +185,20 @@ define the configuration
 use the following placeholder format (file format doesnt matter):
 
 ::
+
     doctrine:
      dbal:
        dbname:   %%DB_NAME%%
        user:     %%DB_USER%%
        password: %%DB_PWD%%
 
+
 all files with extension **.dist** will be parsed and replaced with tokens!
 
-these **.dist** files can be stored in your vcs **dont check in password or private configurations**
+these **.dist** files can be stored in your vcs 
+
+**dont check in password or private configurations**
+
 *(when the configurator runs it creates placeholder replaced copies without the **.dist** extension)*
 
 run the command
