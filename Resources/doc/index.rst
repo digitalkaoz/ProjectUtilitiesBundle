@@ -200,7 +200,7 @@ these **.dist** files can be stored in your vcs
 
 **dont check in password or private configurations**
 
-*when the configurator runs it creates placeholder replaced copies without the **.dist** extension*
+(when the configurator runs it creates placeholder replaced copies without the **.dist** extension)
 
 run the command
 ---------------
