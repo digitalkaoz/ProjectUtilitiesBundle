@@ -79,8 +79,8 @@ Using DependencyInjection
       configurator:
         class: Configurator
         setup: app/config/configuration.yml
-        dist: Bundleloader
-        config: /home/YOU/.[KERNEL.NAME]_[KERNEL.ENVIRONMENT].ini
+        dist: .dist #the file extension for placeholder files
+        config: /home/YOU/.[KERNEL.NAME]_[KERNEL.ENVIRONMENT].ini #private vars
 
 
 
