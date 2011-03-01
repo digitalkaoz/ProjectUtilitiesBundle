@@ -63,6 +63,27 @@ Using DependencyInjection
     $this->get('bundleloader'); //returns the bundleloader
 
 
+::
+
+    #app/config/config.yml
+    project_utilities:
+      
+      bootstrap:
+        class: Bootstrapper
+        file: app/config/bootstrap.yml
+      
+      bundleloader:
+        class: Bundleloader
+        file: app/config/bundles.yml
+
+      configurator:
+        class: Configurator
+        setup: app/config/configuration.yml
+        dist: Bundleloader
+        config: /home/YOU/.[KERNEL.NAME]_[KERNEL.ENVIRONMENT].ini
+
+
+
 TODO
 ----
 
