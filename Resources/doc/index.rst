@@ -30,7 +30,6 @@ Add the *rs* namespace to your autoloader
 -------------
 
 ``` php
-<<<<<<< HEAD
 <?php
 // app/autoload.php
 
@@ -44,7 +43,6 @@ Add ProjectUtilitiesBundle to your application kernel
 -------------
 
 ``` php
-<<<<<<< HEAD
 <?php
 // app/AppKernel.php
 public function registerBundles()
