@@ -32,8 +32,6 @@ Add the *rs* namespace to your autoloader
 ``` php
 <<<<<<< HEAD
 <?php
-=======
->>>>>>> c157b3936a3beb60d6f6790f2b1b0a3c86b6e7b9
 // app/autoload.php
 
 $loader->registerNamespaces(array(
@@ -48,9 +46,6 @@ Add ProjectUtilitiesBundle to your application kernel
 ``` php
 <<<<<<< HEAD
 <?php
-
-=======
->>>>>>> c157b3936a3beb60d6f6790f2b1b0a3c86b6e7b9
 // app/AppKernel.php
 public function registerBundles()
 {
