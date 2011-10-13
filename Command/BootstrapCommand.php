@@ -2,16 +2,13 @@
 
 namespace rs\ProjectUtilitiesBundle\Command;
 
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Output\Output;
-use Symfony\Bundle\FrameworkBundle\Util\Mustache;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 
 use rs\ProjectUtilitiesBundle\Project\Bootstrapper;
 
@@ -22,7 +19,7 @@ use rs\ProjectUtilitiesBundle\Project\Bootstrapper;
  * @package rs.ProjectUtitlitiesBundle
  * @subpackage Command
  */
-class BootstrapCommand extends Command
+class BootstrapCommand extends ContainerAwareCommand
 {
 	/**
 	 * @see Command
@@ -61,24 +58,15 @@ EOT
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$this->output = $output;
-		$this->stopOnError = $input->getOption('stop');
-
-		if(!$this->application){
-			$this->setApplication(new Application($this->container->get('kernel')));
-		}
+		$this->getApplication()->setCatchExceptions(!$input->getOption('stop'));
+		$this->getApplication()->setAutoExit(false);
 		
-		$this->application->setCatchExceptions(!$this->stopOnError);
-		$this->application->setAutoExit(false);
+		$bootstrapper = $this->getContainer()->get('rs_projectutilities.bootstrap');
 		
-		$bootstrapper = $this->application->getKernel()->getContainer()->get('bootstrap');
-		
-		//$bootstrapper = new Bootstrapper();
-
 		$bootstrapper->
-			setApplication($this->application)->
+            setApplication($this->getApplication())->
 			setOutput($output)->
-			bootstrap($input->getOption('config'));
+			bootstrap();
 	}
 	
 }

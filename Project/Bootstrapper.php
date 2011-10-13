@@ -4,48 +4,49 @@ namespace rs\ProjectUtilitiesBundle\Project;
 
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Input\ArrayInput;
-use Symfony\Component\Console\Output\ConsoleOutput;
-use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Console\Application;
 
 /**
- * executes various symfony2 commands defined in a yaml file
+ * executes various symfony2 or shell commands defined in a yaml file
  * 
  * @author Robert Schönthal <seroscho@googlemail.com>
- * @package rs.ProjectUtitlitiesBundle
+ * @package rs.ProjectUtilitiesBundle
  * @subpackage Project
  */
 class Bootstrapper
 {
 
-    protected $application, $output;
+    protected $kernel, $application, $output, $config_file;
 
-    /**
-     * shortcut for instanciation 
-     * 
-     * @return Bootstrapper 
-     */
-    public static function create()
+    public function setKernel(KernelInterface $kernel)
     {
-        return new self();
-    }
-    
-    public function setApplication($app = null)
-    {
-        $this->application = $app;
+        $this->kernel = $kernel;
 
         return $this;
     }
 
-    public function setOutput($output)
+    public function setConfigFile($file)
+    {
+        if (!\is_readable($file)) {
+            throw new \InvalidArgumentException(sprintf('configuration file not found [%s]', $file));
+        }
+
+        $this->config_file = $file;
+    }
+
+    public function setOutput(OutputInterface $output)
     {
         $this->output = $output;
 
         return $this;
     }
 
-    public function createApplication($kernel)
+    public function setApplication(Application $app)
     {
-        $this->setApplication(new Application($kernel));
+        $this->application = $app;
 
         return $this;
     }
@@ -55,22 +56,45 @@ class Bootstrapper
      * 
      * @param string $config_file 
      */
-    public function bootstrap($config_file = null)
+    public function bootstrap()
     {
-        if(!$this->application){
-            throw new \RuntimeException('set application first');
-        }
-        
-        $config = $this->loadConfigFile($config_file);
+        $config = $this->loadConfigFile($this->config_file);
+
+        // run shells
+        $this->processShells($config['shells']);
 
         //run commands
         $this->processCommands($config['commands']);
-        
-        //TODO run shells
-        
+
         return $this;
     }
-    
+
+    /**
+     * runs several shell commands
+     * 
+     * @param array $commands 
+     */
+    protected function processShells($shells)
+    {
+        \array_map(array($this, 'processShell'), $shells);
+    }
+
+    /**
+     * runs a command
+     * 
+     * @param string $command
+     * @return int 
+     */
+    protected function processShell($command)
+    {
+        $this->out(sprintf('<question>execute</question> <comment>%s</comment>', $command));
+
+        ob_start();
+        system($command);
+
+        $this->out(ob_get_clean());
+    }
+
     /**
      * runs several commands
      * 
@@ -78,9 +102,13 @@ class Bootstrapper
      */
     protected function processCommands($commands)
     {
-        if($commands){
-            \array_map(array($this, 'processCommand'), $commands);            
-        }        
+        if (!$this->application) {
+            $this->application = new Application($this->kernel);
+        }
+
+        if ($commands) {
+            \array_map(array($this, 'processCommand'), $commands);
+        }
     }
 
     /**
@@ -100,7 +128,7 @@ class Bootstrapper
             throw new \InvalidArgumentException(sprintf('configuration file not found [%s]', $file));
         }
 
-        return \Symfony\Component\Yaml\Yaml::load($file);
+        return Yaml::parse($file);
     }
 
     /**
@@ -110,9 +138,7 @@ class Bootstrapper
      */
     protected function getConfigFile()
     {
-        $kernel = $this->application->getKernel();
-        
-        return $kernel->getContainer()->parameters['bootstrap.file'];
+        return $this->kernel->getContainer()->get('rs_projectutilities.bootstrap.resource');
     }
 
     /**
@@ -123,14 +149,21 @@ class Bootstrapper
      */
     protected function processCommand($command)
     {
-        if ($this->output) {
-            $this->output->writeln(sprintf('<question>execute</question> <comment>%s</comment>', $command));
-        }
+        $this->out(sprintf('<question>execute</question> <comment>%s</comment>', $command));
 
         //create a input from command line
         $input = strpos($command, ' ') !== false ? new StringInput($command) : new ArrayInput(array($command));
+
         //run the command
+        //TODO correct input parsing fails on "help --foo bar"
         return $this->application->run($input);
+    }
+    
+    protected function out($message)
+    {
+        if ($this->output) {
+            $this->output->writeln($message);
+        }
     }
 
 }

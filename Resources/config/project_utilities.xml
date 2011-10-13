@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<container xmlns="http://www.symfony-project.org/schema/dic/services"
+<container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.symfony-project.org/schema/dic/services http://www.symfony-project.org/schema/dic/services/services-1.0.xsd">
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-  <parameters>
-    <parameter key="bootstrap.class">rs\ProjectUtilitiesBundle\Project\Bootstrapper</parameter>
-    <parameter key="bootstrap.file">%kernel.root_dir%/config/bootstrap.yml</parameter>
-    
-    <parameter key="bundleloader.class">rs\ProjectUtilitiesBundle\Project\BundleLoader</parameter>
-    <parameter key="bundleloader.file">%kernel.root_dir%/config/bundles.yml</parameter>
-    
-    <parameter key="configurator.class">rs\ProjectUtilitiesBundle\Project\Configurator</parameter>
-    <parameter key="configurator.setup">%kernel.root_dir%/config/configuration.yml</parameter>
-    <parameter key="configurator.dist">.dist</parameter>
-    <parameter key="configurator.config"></parameter>
-  </parameters>
+    <parameters>
+        <parameter key="rs_projectutilities.bootstrap.class">rs\ProjectUtilitiesBundle\Project\Bootstrapper</parameter>
+        <parameter key="rs_projectutilities.bootstrap.resource">%kernel.root_dir%/config/bootstrap.yml</parameter>
+    </parameters>
   
-  <services>
-    <service id="bootstrap" class="%bootstrap.class%"></service>
-    <service id="bundleloader" class="%bundleloader.class%"></service>
-    <service id="configurator" class="%configurator.class%"></service>
-  </services>
+    <services>
+        <service id="rs_projectutilities.bootstrap" class="%rs_projectutilities.bootstrap.class%">
+            <call method="setKernel">
+                <argument type="service" id="kernel" />
+            </call>
+            <call method="setConfigFile">
+                <argument>%rs_projectutilities.bootstrap.resource%</argument>
+            </call>
+        </service>
+    </services>
   
 </container>

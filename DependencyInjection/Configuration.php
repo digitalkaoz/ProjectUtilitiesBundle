@@ -2,34 +2,23 @@
 
 namespace rs\ProjectUtilitiesBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
-/**
- * a simple yaml to bundle wrapper
- * 
- * @author Robert Schönthal <seroscho@googlemail.com>
- * @package rs.ProjectUtitlitiesBundle
- * @subpackage DepedencyInjection
- */
-class Configuration
+class Configuration implements ConfigurationInterface
 {
     /**
-     * Generates the configuration tree.
-     *
-     * @return \Symfony\Component\Config\Definition\NodeInterface
+     * {@inheritDoc}
      */
-    public function getConfigTree($kernelDebug)
+    public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('project_utilities', 'array');
+        $rootNode = $treeBuilder->root('rs_projectutilities');
 
-        $rootNode
-                ->variableNode('bootstrap')->end()
-                ->variableNode('bundleloader')->end()
-                ->variableNode('configurator')->end()
-                ;
-                
-        return $treeBuilder->buildTree();
+        // Here you should define the parameters that are allowed to
+        // configure your bundle. See the documentation linked above for
+        // more information on that topic.
+
+        return $treeBuilder;
     }
 }

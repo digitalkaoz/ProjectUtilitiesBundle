@@ -8,9 +8,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * a simple yaml to bundle wrapper
  * 
  * @author Robert Schönthal <seroscho@googlemail.com>
- * @package rs.ProjectUtitlitiesBundle
+ * @package rs.ProjectUtilitiesBundle
  */
-class ProjectUtilitiesBundle extends Bundle
+class rsProjectUtilitiesBundle extends Bundle
 {
     
 }
