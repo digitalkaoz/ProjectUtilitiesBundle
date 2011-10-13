@@ -30,30 +30,29 @@ Add the *rs* namespace to your autoloader
 -------------
 
 ``` php
-<?php
-    // app/autoload.php
+// app/autoload.php
 
-    $loader->registerNamespaces(array(
-        'rs' => __DIR__.'/../src',
-        // your other namespaces
-    );
+$loader->registerNamespaces(array(
+    'rs' => __DIR__.'/../src',
+    // your other namespaces
+);
 ```
 
 Add ProjectUtilitiesBundle to your application kernel
 -------------
 
 ``` php
-    // app/AppKernel.php
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle(),
-            // ...
-        );
-    }
-    
-   //or use the BundleLoader (see below)
+// app/AppKernel.php
+public function registerBundles()
+{
+    return array(
+        // ...
+        new rs\ProjectUtilitiesBundle\ProjectUtilitiesBundle(),
+        // ...
+    );
+}
+
+//or use the BundleLoader (see below)
 ```  
 
 Configuration
