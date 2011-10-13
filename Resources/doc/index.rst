@@ -30,6 +30,7 @@ Add the *rs* namespace to your autoloader
 -------------
 
 ``` php
+<?php
 // app/autoload.php
 
 $loader->registerNamespaces(array(
@@ -42,6 +43,8 @@ Add ProjectUtilitiesBundle to your application kernel
 -------------
 
 ``` php
+<?php
+
 // app/AppKernel.php
 public function registerBundles()
 {
@@ -105,18 +108,19 @@ use the BundleLoader in your Application Kernel
 ---------------
 
 ``` php
-    // app/AppKernel.php
-    use rs\ProjectUtilitiesBundle\Project\BundleLoader;
-    
-    class AppKernel extends Kernel
+<?php
+// app/AppKernel.php
+use rs\ProjectUtilitiesBundle\Project\BundleLoader;
+
+class AppKernel extends Kernel
+{
+
+    public function registerBundles()
     {
-     
-        public function registerBundles()
-        {
-            $file = $this->getRootDir().'/config/bundles.yml';
-            return BundleLoader::create($this)->loadFromFile($file);
-        }
+        $file = $this->getRootDir().'/config/bundles.yml';
+        return BundleLoader::create($this)->loadFromFile($file);
     }
+}
 ```
 
 environment configurations
