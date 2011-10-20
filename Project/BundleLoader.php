@@ -77,6 +77,13 @@ class BundleLoader
     {
         $cache = $this->kernel->getCacheDir().'/'.basename($file,'.yml').'.cache';
         
+        //create cache dir if not exists
+        if(!is_dir($this->kernel->getCacheDir()))
+        {
+            mkdir($this->kernel->getCacheDir(), 0777, true);
+        }
+        
+        //read from cache
         if(is_readable($cache))
         {
             return unserialize(file_get_contents($cache));
